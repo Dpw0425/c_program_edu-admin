@@ -1,13 +1,9 @@
 <template>
-    <div>
-        <h1>shouye</h1>
-    </div>
+  <div>
+    <h1>shouye</h1>
+  </div>
 </template>
 
-<script setup lang="ts">
+<script setup lang="ts"></script>
 
-</script>
-
-<style scoped>
-
-</style>
+<style scoped></style>

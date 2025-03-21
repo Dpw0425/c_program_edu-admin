@@ -1,3 +1,3 @@
 export interface AdminState {
-    token: string | null
+  token: string | null
 }
