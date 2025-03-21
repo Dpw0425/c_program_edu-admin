@@ -94,12 +94,8 @@ const login = async () => {
 // 表单校验规则
 const rules = {
   user_name: [
-    { required: true, message: '请输入邮箱地址', trigger: 'blur' },
-    {
-      type: 'email',
-      message: '请输入正确的邮箱地址',
-      trigger: ['blur', 'change'],
-    },
+    { required: true, message: '请输入工号', trigger: 'blur' },
+    { max: 10, message: '请输入正确的工号', trigger: ['blur', 'change'] },
   ],
   password: [{ required: true, message: '请输入密码', trigger: 'blur' }],
 }
