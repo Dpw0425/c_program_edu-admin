@@ -7,7 +7,7 @@ export const constantRoutes = [
     meta: {
       title: 'layout',
     },
-    redirect: '/home',
+    redirect: '/login',
     children: [
       {
         // 首页
@@ -20,5 +20,14 @@ export const constantRoutes = [
         },
       },
     ],
+  },
+  {
+    // 登录
+    path: '/login',
+    component: () => import('@/views/login/index.vue'),
+    name: 'Login', // 命名路由
+    meta: {
+      title: '登录',
+    },
   },
 ]

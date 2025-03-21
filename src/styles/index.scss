@@ -1,0 +1,15 @@
+// 清除默认样式
+@use './reset.scss' as *;
+
+// 滚动条外观
+::-webkit-scrollbar {
+    width: 10px;
+}
+::-webkit-scrollbar-track {
+    background: #efefef;
+}
+::-webkit-scrollbar-thumb {
+    width: 10px;
+    background: #8b8b8b;
+    border-radius: 10px;
+}
