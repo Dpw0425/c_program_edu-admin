@@ -1,7 +1,11 @@
 import { defineStore } from 'pinia'
 import type { AdminState } from '../types/admin'
 import { GET_TOKEN, REMOVE_TOKEN, SET_TOKEN } from '@/utils/token'
-import type { adminInfoRsponseData, loginForm, loginResponseData } from '@/api/admin/type'
+import type {
+  adminInfoRsponseData,
+  loginForm,
+  loginResponseData,
+} from '@/api/admin/type'
 import { reqAdminInfo, reqLogin, reqLogout } from '@/api/admin'
 
 let useAdminStore = defineStore('User', {

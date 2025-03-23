@@ -6,7 +6,7 @@ const USER_API = '/user'
 enum API {
   LOGIN_URL = USER_API + '/login',
   ADMININFO_URL = USER_API + '/info',
-  LOGOUT_URL = USER_API + '/logout'
+  LOGOUT_URL = USER_API + '/logout',
 }
 
 export const reqLogin = (data: loginForm) =>
@@ -15,5 +15,4 @@ export const reqLogin = (data: loginForm) =>
 export const reqAdminInfo = () =>
   request.get<any, adminInfoRsponseData>(API.ADMININFO_URL)
 
-export const reqLogout = () =>
-  request.get<any, any>(API.LOGOUT_URL)
+export const reqLogout = () => request.get<any, any>(API.LOGOUT_URL)
