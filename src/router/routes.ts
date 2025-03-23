@@ -1,13 +1,12 @@
 export const constantRoutes = [
   {
-    // 首页
     path: '/',
     component: () => import('@/layout/index.vue'),
     name: 'Layout',
     meta: {
       title: 'layout',
     },
-    redirect: '/login',
+    redirect: '/home',
     children: [
       {
         // 首页

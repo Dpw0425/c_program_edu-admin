@@ -1,4 +1,4 @@
-import type { ResponseData } from '../type'
+import type { NormalData, ResponseData } from '../type'
 
 // login
 export interface loginForm {
@@ -24,4 +24,9 @@ interface adminInfo {
 }
 export interface adminInfoRsponseData extends ResponseData {
   data?: adminInfo
+}
+
+// logout
+export interface logoutResponseData extends ResponseData {
+  data?: NormalData
 }
