@@ -74,7 +74,7 @@ const login = async () => {
     await adminStore.adminLogin(loginForm)
 
     let redirect: any = $route.query.redirect
-    $router.push({ path: redirect || '/' })
+    $router.push({ path: redirect || '/home' })
 
     ElNotification({
       type: 'success',
