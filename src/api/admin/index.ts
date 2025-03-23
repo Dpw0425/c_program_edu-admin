@@ -1,5 +1,10 @@
 import request from '@/utils/request'
-import type { adminInfoRsponseData, loginForm, loginResponseData, logoutResponseData } from './type'
+import type {
+  adminInfoRsponseData,
+  loginForm,
+  loginResponseData,
+  logoutResponseData,
+} from './type'
 
 const USER_API = '/user'
 
@@ -15,4 +20,5 @@ export const reqLogin = (data: loginForm) =>
 export const reqAdminInfo = () =>
   request.get<any, adminInfoRsponseData>(API.ADMININFO_URL)
 
-export const reqLogout = () => request.get<any, logoutResponseData>(API.LOGOUT_URL)
+export const reqLogout = () =>
+  request.get<any, logoutResponseData>(API.LOGOUT_URL)

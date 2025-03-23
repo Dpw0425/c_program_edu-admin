@@ -1,5 +1,5 @@
 <template>
-  <div style="background-color: rgb(239, 239, 239);">
+  <div style="background-color: rgb(239, 239, 239)">
     <router-view v-slot="{ Component }">
       <transition name="fade">
         <component :is="Component" v-if="flag" />
@@ -9,8 +9,8 @@
 </template>
 
 <script setup lang="ts">
-import useLayoutSettingStore from '@/store/modules/setting';
-import { nextTick, ref, watch } from 'vue';
+import useLayoutSettingStore from '@/store/modules/setting'
+import { nextTick, ref, watch } from 'vue'
 let layoutSettingStore = useLayoutSettingStore()
 let flag = ref(true)
 

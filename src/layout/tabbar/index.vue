@@ -3,17 +3,17 @@
     <!-- 左侧导航栏 -->
     <div class="tabbar_left">
       <el-breadcrumb separator-icon="ArrowRight">
-          <el-breadcrumb-item
-            v-for="(item, index) in $route.matched"
-            :key="index"
-            v-show="item.meta.title != 'layout'"
-            :to="item.path"
-          >
-            <span class="breadcrumb_icon">
-              <svg-icon :name="item.meta.icon"></svg-icon>
-            </span>
-            <span>{{ item.meta.title }}</span>
-          </el-breadcrumb-item>
+        <el-breadcrumb-item
+          v-for="(item, index) in $route.matched"
+          :key="index"
+          v-show="item.meta.title != 'layout'"
+          :to="item.path"
+        >
+          <span class="breadcrumb_icon">
+            <svg-icon :name="item.meta.icon"></svg-icon>
+          </span>
+          <span>{{ item.meta.title }}</span>
+        </el-breadcrumb-item>
       </el-breadcrumb>
     </div>
 
@@ -61,9 +61,9 @@
 </template>
 
 <script setup lang="ts">
-import useAdminStore from '@/store/modules/admin';
-import useLayoutSettingStore from '@/store/modules/setting';
-import { useRoute, useRouter } from 'vue-router';
+import useAdminStore from '@/store/modules/admin'
+import useLayoutSettingStore from '@/store/modules/setting'
+import { useRoute, useRouter } from 'vue-router'
 import { ElNotification } from 'element-plus'
 
 let $route = useRoute()
