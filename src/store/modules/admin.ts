@@ -7,6 +7,7 @@ import type {
   loginResponseData,
 } from '@/api/admin/type'
 import { reqAdminInfo, reqLogin, reqLogout } from '@/api/admin'
+import { constantRoutes } from '@/router/routes'
 
 let useAdminStore = defineStore('User', {
   state: (): AdminState => {
@@ -16,6 +17,7 @@ let useAdminStore = defineStore('User', {
       teacher_id: '',
       permission: [],
       status: null,
+      menuRoutes: constantRoutes,
     }
   },
   actions: {

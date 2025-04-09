@@ -5,6 +5,7 @@ export const constantRoutes = [
     name: 'Layout',
     meta: {
       title: 'layout',
+      hidden: false,
     },
     redirect: '/home',
     children: [
@@ -15,10 +16,30 @@ export const constantRoutes = [
         name: 'Home',
         meta: {
           title: '首页',
-          icon: 'home',
+          icon: 'HomeFilled',
+          hidden: false,
         },
       },
     ],
+  },
+  {
+    // 404
+    path: '/404',
+    component: () => import('@/views/404/index.vue'),
+    name: '404',
+    meta: {
+      title: '404',
+      hidden: true,
+    },
+  },
+  {
+    path: '/:pathMatch(.*)*',
+    redirect: '/404',
+    name: 'Any',
+    meta: {
+      title: '其它路由',
+      hidden: true,
+    },
   },
   {
     // 登录
@@ -27,6 +48,7 @@ export const constantRoutes = [
     name: 'Login', // 命名路由
     meta: {
       title: '登录',
+      hidden: true,
     },
   },
 ]

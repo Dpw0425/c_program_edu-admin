@@ -13,7 +13,7 @@
         background-color="#34495e"
         :default-active="$route.path"
       >
-        <Menu></Menu>
+        <Menu :menuList="adminStore.menuRoutes"></Menu>
       </el-menu>
     </div>
 
@@ -40,6 +40,9 @@ import Main from './main/index.vue'
 
 // 引入顶部导航栏
 import Tabbar from './tabbar/index.vue'
+
+import useAdminStore from '@/store/modules/admin'
+let adminStore = useAdminStore()
 
 let $route = useRoute()
 </script>
