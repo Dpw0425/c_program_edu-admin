@@ -71,7 +71,7 @@ export const constantRoutes = [
           title: '用户管理',
           hidden: false,
           icon: 'User',
-        }
+        },
       },
       {
         // 管理员管理
@@ -82,8 +82,8 @@ export const constantRoutes = [
           title: '管理员管理',
           hidden: false,
           icon: 'Avatar',
-        }
+        },
       },
-    ]
+    ],
   },
 ]

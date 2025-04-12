@@ -57,7 +57,7 @@ defineProps(['menuList'])
 
 const goRoute = (vc: any) => {
   if (vc && vc.index) {
-    $router.push(vc.index).catch(err => {
+    $router.push(vc.index).catch((err) => {
       console.error(err)
     })
   }
