@@ -51,4 +51,39 @@ export const constantRoutes = [
       hidden: true,
     },
   },
+  {
+    // 权限管理
+    path: '/authorization',
+    component: () => import('@/layout/index.vue'),
+    name: 'Authorization',
+    meta: {
+      title: '权限管理',
+      hidden: false,
+      icon: 'Lock',
+    },
+    children: [
+      {
+        // 用户管理
+        path: '/authorization/user',
+        component: () => import('@/views/authorization/user/index.vue'),
+        name: 'User',
+        meta: {
+          title: '用户管理',
+          hidden: false,
+          icon: 'User',
+        }
+      },
+      {
+        // 管理员管理
+        path: '/authorization/admin',
+        component: () => import('@/views/authorization/admin/index.vue'),
+        name: 'Admin',
+        meta: {
+          title: '管理员管理',
+          hidden: false,
+          icon: 'Avatar',
+        }
+      },
+    ]
+  },
 ]
