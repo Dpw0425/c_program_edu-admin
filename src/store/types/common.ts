@@ -1,7 +1,7 @@
 export interface commonState {
-    month: string
-    date: string
-    weekday: string
-    monthType: string
-    lunarDate: string
+  month: string
+  date: string
+  weekday: string
+  monthType: string
+  lunarDate: string
 }

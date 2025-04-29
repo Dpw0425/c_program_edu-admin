@@ -44,7 +44,7 @@
               border-radius: 50%;
             "
           />
-          <span style="display: flex; align-items: center; margin-left: 20px;">
+          <span style="display: flex; align-items: center; margin-left: 20px">
             {{ adminStore.user_name }}
           </span>
         </span>

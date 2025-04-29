@@ -140,8 +140,8 @@ export const constantRoutes = [
         meta: {
           title: '题库列表',
           hidden: false,
-          icon: 'List'
-        }
+          icon: 'List',
+        },
       },
     ],
   },
@@ -165,7 +165,7 @@ export const constantRoutes = [
           title: '比赛列表',
           hidden: false,
           icon: 'Files',
-        }
+        },
       },
     ],
   },

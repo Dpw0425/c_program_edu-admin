@@ -4,12 +4,25 @@
       <div class="col-md-12">
         <div class="article">
           <div class="row">
-            <div class="col-md-8" style="align-items: center; display: flex; justify-content: center;">
+            <div
+              class="col-md-8"
+              style="
+                align-items: center;
+                display: flex;
+                justify-content: center;
+              "
+            >
               <svg-icon name="logo" width="80%" height="80%"></svg-icon>
             </div>
 
-            <div class="col-md-4" style="text-align: center;">
-              <h2 style="font-size: 1.25rem; margin: 2.5rem 0 2rem; font-weight: 600;">
+            <div class="col-md-4" style="text-align: center">
+              <h2
+                style="
+                  font-size: 1.25rem;
+                  margin: 2.5rem 0 2rem;
+                  font-weight: 600;
+                "
+              >
                 {{ getTime() }}好，
                 <span style="color: #0e90d2 !important">
                   {{ adminStore.user_name }}老师
