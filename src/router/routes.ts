@@ -86,4 +86,87 @@ export const constantRoutes = [
       },
     ],
   },
+  {
+    // 题目管理
+    path: '/question',
+    component: () => import('@/layout/index.vue'),
+    name: 'Question',
+    meta: {
+      title: '题目管理',
+      hidden: false,
+      icon: 'Notebook',
+    },
+    children: [
+      {
+        // 题目列表
+        path: '/question/list',
+        component: () => import('@/views/question/list/index.vue'),
+        name: 'QuestionBankList',
+        meta: {
+          title: '题目列表',
+          hidden: false,
+          icon: 'Document',
+        },
+      },
+      {
+        // 分类管理
+        path: '/question/tag',
+        component: () => import('@/views/question/tag/index.vue'),
+        name: 'Tag',
+        meta: {
+          title: '分类管理',
+          hidden: false,
+          icon: 'Paperclip',
+        },
+      },
+    ],
+  },
+  {
+    // 题库管理
+    path: '/question_bank',
+    component: () => import('@/layout/index.vue'),
+    name: 'QuestionBank',
+    meta: {
+      title: '题库管理',
+      hidden: false,
+      icon: 'Briefcase',
+    },
+    children: [
+      {
+        // 题库列表
+        path: '/quetsion_bank/list',
+        component: () => import('@/views/question_bank/list/index.vue'),
+        name: 'QustionBankList',
+        meta: {
+          title: '题库列表',
+          hidden: false,
+          icon: 'List'
+        }
+      },
+    ],
+  },
+  {
+    // 比赛管理
+    path: '/competition',
+    component: () => import('@/layout/index.vue'),
+    name: 'Competition',
+    meta: {
+      title: '比赛管理',
+      hidden: false,
+      icon: 'Trophy',
+    },
+    children: [
+      // 比赛列表
+      {
+        path: '/competition/list',
+        component: () => import('@/views/competition/list/index.vue'),
+        name: 'CompetitionList',
+        meta: {
+          title: '比赛列表',
+          hidden: false,
+          icon: 'Files',
+        }
+      },
+    ],
+  },
 ]
