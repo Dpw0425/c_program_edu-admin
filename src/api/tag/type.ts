@@ -1,15 +1,15 @@
-import type { ResponseData } from "../type"
+import type { ResponseData } from '../type'
 
 interface tagItem {
-    id: number
-    name: string
-    count: number
+  id: number
+  name: string
+  count: number
 }
-export type TagList = tagItem[] 
+export type TagList = tagItem[]
 
 export interface tagListResponseData extends ResponseData {
-    data: {
-        tag_list: TagList
-        total: number
-    }
+  data: {
+    tag_list: TagList
+    total: number
+  }
 }

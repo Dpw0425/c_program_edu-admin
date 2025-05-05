@@ -7,7 +7,7 @@
       <el-table-column prop="name" label="分类名称" />
       <el-table-column prop="count" label="题目数量" />
       <el-table-column label="分类管理">
-        <template #="{row, $index}">
+        <template #="{ row, $index }">
           <el-button type="warning" size="small" icon="Edit"></el-button>
           <el-button type="danger" size="small" icon="Delete"></el-button>
         </template>
@@ -38,13 +38,17 @@ let total = ref<number>(0)
 let tagList = ref<TagList>([])
 
 const getTagList = async () => {
-  let result: tagListResponseData = await reqTagList(pageNo.value, limit.value, null)
+  let result: tagListResponseData = await reqTagList(
+    pageNo.value,
+    limit.value,
+    null,
+  )
   if (result.code == 200) {
     total.value = result.data.total
-    tagList.value = result.data.tag_list.map(item => {
+    tagList.value = result.data.tag_list.map((item) => {
       return {
         ...item,
-        count: item.count != null ? item.count: 0
+        count: item.count != null ? item.count : 0,
       }
     })
   }
