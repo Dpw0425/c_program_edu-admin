@@ -8,7 +8,7 @@
       <el-table-column prop="tag" label="题目标签" align="center" />
       <el-table-column prop="degree" label="题目难度" align="center" />
       <el-table-column prop="passing_rate" label="正确率" align="center" />
-      <el-table-column label="题目管理" align="center" >
+      <el-table-column label="题目管理" align="center">
         <template #="{ row, $index }">
           <el-button type="warning" size="small" icon="Edit"></el-button>
           <el-button type="danger" size="small" icon="Delete"></el-button>
@@ -29,7 +29,10 @@
 </template>
 
 <script setup lang="ts">
-import type { QuestionList, questionListResponseData } from '@/api/question/type'
+import type {
+  QuestionList,
+  questionListResponseData,
+} from '@/api/question/type'
 import { reqQuestionList } from '@/api/question'
 import { onMounted, ref } from 'vue'
 // 当前页码
