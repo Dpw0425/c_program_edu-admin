@@ -8,7 +8,7 @@ interface tagItem {
 export type TagList = tagItem[]
 
 export interface tagListResponseData extends ResponseData {
-  data: {
+  data?: {
     tag_list: TagList
     total: number
   }

@@ -14,13 +14,15 @@
       </el-table-column>
     </el-table>
 
-    <el-pagination
-      v-mode:current-page="pageNo"
-      :page-size="limit"
-      background
-      layout="prev, pager, next, jumper, ->, total"
-      :total="total"
-    />
+    <div class="pagination_container">
+      <el-pagination
+        v-mode:current-page="pageNo"
+        :page-size="limit"
+        background
+        layout="prev, pager, next, jumper, ->, total"
+        :total="total"
+      />
+    </div>
   </el-card>
 </template>
 
@@ -44,13 +46,13 @@ const getTagList = async () => {
     null,
   )
   if (result.code == 200) {
-    total.value = result.data.total
-    tagList.value = result.data.tag_list.map((item) => {
+    total.value = result.data?.total as number
+    tagList.value = result.data?.tag_list.map((item) => {
       return {
         ...item,
         count: item.count != null ? item.count : 0,
       }
-    })
+    }) as TagList
   }
 }
 
@@ -59,4 +61,17 @@ onMounted(() => {
 })
 </script>
 
-<style scoped></style>
+<style scoped lang="scss">
+.box-card {
+  min-height: 620px;
+  position: relative;
+}
+
+.pagination_container {
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+  right: 0;
+  padding: 0 20px;
+}
+</style>
