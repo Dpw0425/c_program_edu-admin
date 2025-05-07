@@ -17,7 +17,7 @@
 
     <div class="pagination_container">
       <el-pagination
-        @current-change="getUserList()"
+        @current-change="getUserList"
         v-mode:current-page="pageNo"
         :page-size="limit"
         background

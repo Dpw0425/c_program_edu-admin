@@ -19,7 +19,7 @@
 
     <div class="pagination_container">
       <el-pagination
-        @current-change="getAdminList()"
+        @current-change="getAdminList"
         v-mode:current-page="pageNo"
         :page-size="limit"
         background
