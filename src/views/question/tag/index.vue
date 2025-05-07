@@ -16,6 +16,7 @@
 
     <div class="pagination_container">
       <el-pagination
+        @current-change="getTagList()"
         v-mode:current-page="pageNo"
         :page-size="limit"
         background
