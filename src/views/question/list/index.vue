@@ -45,7 +45,8 @@ let total = ref<number>(0)
 
 let questionList = ref<QuestionList>([])
 
-const getQuestionList = async () => {
+const getQuestionList = async (pager = 1) => {
+  pageNo.value = pager
   let result: questionListResponseData = await reqQuestionList(
     pageNo.value,
     limit.value,

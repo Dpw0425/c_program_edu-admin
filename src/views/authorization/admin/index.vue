@@ -43,7 +43,8 @@ let total = ref<number>(0)
 
 let adminList = ref<AdminList>([])
 
-const getAdminList = async () => {
+const getAdminList = async (pager = 1) => {
+  pageNo.value = pager
   let result: adminListResponseData = await reqAdminList(
     pageNo.value,
     limit.value,

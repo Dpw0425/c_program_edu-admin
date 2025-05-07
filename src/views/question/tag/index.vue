@@ -40,7 +40,8 @@ let total = ref<number>(0)
 
 let tagList = ref<TagList>([])
 
-const getTagList = async () => {
+const getTagList = async (pager = 1) => {
+  pageNo.value = pager
   let result: tagListResponseData = await reqTagList(
     pageNo.value,
     limit.value,
