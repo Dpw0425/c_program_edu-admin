@@ -1,5 +1,12 @@
 import request from '@/utils/request'
-import type { addTagForm, addTagResponse, deleteTagResponse, tagListResponseData, updateTagForm, updateTagResponse } from './type'
+import type {
+  addTagForm,
+  addTagResponse,
+  deleteTagResponse,
+  tagListResponseData,
+  updateTagForm,
+  updateTagResponse,
+} from './type'
 
 const TAG_API = '/tag'
 
