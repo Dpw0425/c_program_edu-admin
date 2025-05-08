@@ -1,10 +1,13 @@
 import request from '@/utils/request'
-import type { tagListResponseData } from './type'
+import type { addTagForm, addTagResponse, deleteTagResponse, tagListResponseData, updateTagForm, updateTagResponse } from './type'
 
 const TAG_API = '/tag'
 
 enum API {
   LIST_URL = TAG_API + '/list',
+  ADD_URL = TAG_API + '/add',
+  UPDATE_URL = TAG_API + '/update',
+  DELETE_URL = TAG_API + '/delete',
 }
 
 export const reqTagList = (
@@ -15,3 +18,12 @@ export const reqTagList = (
   request.get<any, tagListResponseData>(
     API.LIST_URL + `?page=${page}&number=${number}&search${search}`,
   )
+
+export const reqAddTag = (data: addTagForm) =>
+  request.post<any, addTagResponse>(API.ADD_URL, data)
+
+export const reqUpdateTag = (data: updateTagForm) =>
+  request.post<any, updateTagResponse>(API.UPDATE_URL, data)
+
+export const reqDeleteTag = (id: number) =>
+  request.delete<any, deleteTagResponse>(API.DELETE_URL + `?id=${id}`)
