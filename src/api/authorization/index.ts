@@ -1,5 +1,12 @@
 import request from '@/utils/request'
-import type { addAdminForm, addAdminResponseData, deleteAdminResponse, updateAdminForm, updateAdminReponse, userListResponseData } from './type'
+import type {
+  addAdminForm,
+  addAdminResponseData,
+  deleteAdminResponse,
+  updateAdminForm,
+  updateAdminReponse,
+  userListResponseData,
+} from './type'
 
 const AUTH_API = '/auth'
 
