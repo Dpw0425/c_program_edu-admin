@@ -7,6 +7,8 @@ interface userItem {
   student_id?: string
   grade: number
   status: number
+  email: string
+  avatar: string
 }
 export type UserList = userItem[]
 export interface userListResponseData extends ResponseData {
