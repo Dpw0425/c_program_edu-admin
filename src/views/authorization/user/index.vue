@@ -2,29 +2,50 @@
   <div>
     <el-card class="box-card">
       <el-table style="margin: 10px 0" border :data="userList">
-        <el-table-column label="序号" width="80px" align="center" type="index" />
+        <el-table-column
+          label="序号"
+          width="80px"
+          align="center"
+          type="index"
+        />
         <el-table-column prop="user_name" label="姓名" align="center" />
         <el-table-column prop="student_id" label="学号" align="center" />
         <el-table-column prop="grade" label="年级" align="center" />
         <el-table-column prop="status" label="账号状态" align="center" />
         <el-table-column label="用户管理" align="center">
           <template #="{ row, $index }">
-            <el-button type="warning" size="small" icon="Edit" @click="updateUser(row)"></el-button>
-            <el-button type="danger" size="small" icon="Delete" @click="deleteUser(row)"></el-button>
+            <el-button
+              type="warning"
+              size="small"
+              icon="Edit"
+              @click="updateUser(row)"
+            ></el-button>
+            <el-button
+              type="danger"
+              size="small"
+              icon="Delete"
+              @click="deleteUser(row)"
+            ></el-button>
           </template>
         </el-table-column>
       </el-table>
 
       <div class="pagination_container">
-        <el-pagination @current-change="getUserList" v-mode:current-page="pageNo" :page-size="limit" background
-          layout="prev, pager, next, jumper, ->, total" :total="total" />
+        <el-pagination
+          @current-change="getUserList"
+          v-mode:current-page="pageNo"
+          :page-size="limit"
+          background
+          layout="prev, pager, next, jumper, ->, total"
+          :total="total"
+        />
       </div>
     </el-card>
 
     <el-dialog v-model="updateDialogForm" title="修改用户信息">
       <el-form :model="update" style="width: 80%" :rules="rules">
         <el-form-item label="头像" label-width="80px" prop="avatar">
-          <img :src="update.avatar" class="avatar">
+          <img :src="update.avatar" class="avatar" />
         </el-form-item>
         <el-form-item label="年级" label-width="80px" prop="grade">
           {{ update.grade }}
@@ -55,7 +76,11 @@
     </el-dialog>
 
     <el-dialog v-model="deleteDialogForm" title="删除用户">
-      <h2>即将删除用户<span style="color: red;">{{ del.student_id }}</span>, 是否确认？</h2>
+      <h2>
+        即将删除用户
+        <span style="color: red">{{ del.student_id }}</span>
+        , 是否确认？
+      </h2>
 
       <template #footer>
         <el-button size="default" @click="deleteCancel">取消</el-button>
@@ -68,7 +93,14 @@
 </template>
 
 <script setup lang="ts">
-import type { deleteUserResponseData, updateUserForm, updateUserResponseData, userItem, UserList, userListResponseData } from '@/api/authorization/type'
+import type {
+  deleteUserResponseData,
+  updateUserForm,
+  updateUserResponseData,
+  userItem,
+  UserList,
+  userListResponseData,
+} from '@/api/authorization/type'
 import { reqDeleteUser, reqUpdateUser, reqUserList } from '@/api/authorization'
 import { onMounted, reactive, ref } from 'vue'
 import { ElMessage } from 'element-plus'
@@ -172,9 +204,7 @@ const deleteConfirm = async () => {
   }
 }
 
-const rules = {
-
-}
+const rules = {}
 
 onMounted(() => {
   getUserList()

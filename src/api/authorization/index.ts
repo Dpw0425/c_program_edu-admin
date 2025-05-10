@@ -54,4 +54,6 @@ export const reqUpdateUser = (data: updateUserForm) =>
   request.post<any, updateUserResponseData>(API.UPDATE_USER_URL, data)
 
 export const reqDeleteUser = (user_id: string) =>
-  request.delete<any, deleteUserResponseData>(API.DELETE_USER_URL + `?id=${user_id}`)
+  request.delete<any, deleteUserResponseData>(
+    API.DELETE_USER_URL + `?id=${user_id}`,
+  )
