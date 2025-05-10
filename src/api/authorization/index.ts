@@ -3,8 +3,11 @@ import type {
   addAdminForm,
   addAdminResponseData,
   deleteAdminResponse,
+  deleteUserResponseData,
   updateAdminForm,
   updateAdminReponse,
+  updateUserForm,
+  updateUserResponseData,
   userListResponseData,
 } from './type'
 
@@ -16,6 +19,8 @@ enum API {
   ADD_ADMIN_URL = AUTH_API + '/add_admin',
   UPDATE_ADMIN_URL = AUTH_API + '/update_admin',
   DELETE_ADMIN_URL = AUTH_API + '/delete_admin',
+  UPDATE_USER_URL = AUTH_API + '/update_user',
+  DELETE_USER_URL = AUTH_API + '/delete_user',
 }
 
 export const reqUserList = (
@@ -44,3 +49,9 @@ export const reqUpdateAdmin = (data: updateAdminForm) =>
 
 export const reqDeleteAdmin = (id: number) =>
   request.delete<any, deleteAdminResponse>(API.DELETE_ADMIN_URL + `?id=${id}`)
+
+export const reqUpdateUser = (data: updateUserForm) =>
+  request.post<any, updateUserResponseData>(API.UPDATE_USER_URL, data)
+
+export const reqDeleteUser = (user_id: string) =>
+  request.delete<any, deleteUserResponseData>(API.DELETE_USER_URL + `?id=${user_id}`)
