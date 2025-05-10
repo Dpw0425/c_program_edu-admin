@@ -1,5 +1,11 @@
 import request from '@/utils/request'
-import type { addQuestionForm, addQuestionResponse, deleteQuestionResponse, questionListResponseData, updateQuestionForm } from './type'
+import type {
+  addQuestionForm,
+  addQuestionResponse,
+  deleteQuestionResponse,
+  questionListResponseData,
+  updateQuestionForm,
+} from './type'
 
 const QUESTION_API = '/question'
 
@@ -26,4 +32,6 @@ export const reqUpdateQuestion = (data: updateQuestionForm) =>
   request.post<any, addQuestionResponse>(API.UPDATE_QUESTION_URL, data)
 
 export const reqDeleteQuestion = (id: number) =>
-  request.delete<any, deleteQuestionResponse>(API.DELETE_QUESTION_URL + `?id=${id}`)
+  request.delete<any, deleteQuestionResponse>(
+    API.DELETE_QUESTION_URL + `?id=${id}`,
+  )

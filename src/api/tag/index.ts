@@ -16,7 +16,7 @@ enum API {
   ADD_URL = TAG_API + '/add',
   UPDATE_URL = TAG_API + '/update',
   DELETE_URL = TAG_API + '/delete',
-  GET_ALL_URL = TAG_API + '/get_all'
+  GET_ALL_URL = TAG_API + '/get_all',
 }
 
 export const reqTagList = (

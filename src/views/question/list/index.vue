@@ -1,6 +1,8 @@
 <template>
   <el-card class="box-card">
-    <el-button type="primary" size="default" icon="Plus" @click="addQuestion">发布题目</el-button>
+    <el-button type="primary" size="default" icon="Plus" @click="addQuestion">
+      发布题目
+    </el-button>
 
     <el-table style="margin: 10px 0" :data="questionList">
       <el-table-column label="序号" width="80px" align="center" type="index" />
@@ -10,8 +12,18 @@
       <el-table-column prop="passing_rate" label="正确率" align="center" />
       <el-table-column label="题目管理" align="center">
         <template #="{ row, $index }">
-          <el-button type="warning" size="small" icon="Edit" @click="updateQuestion(row)"></el-button>
-          <el-button type="danger" size="small" icon="Delete" @click="deleteQuestion(row)"></el-button>
+          <el-button
+            type="warning"
+            size="small"
+            icon="Edit"
+            @click="updateQuestion(row)"
+          ></el-button>
+          <el-button
+            type="danger"
+            size="small"
+            icon="Delete"
+            @click="deleteQuestion(row)"
+          ></el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -29,28 +41,42 @@
   </el-card>
 
   <el-dialog v-model="addDialogForm" title="发布题目">
-    <el-form style="width: 80%" :model="add" :rules="rules"> 
+    <el-form style="width: 80%" :model="add" :rules="rules">
       <el-form-item label="题目标题" prop="title" label-width="80px">
         <el-input placeholder="请输入标题" v-model="add.title" />
       </el-form-item>
       <el-form-item label="题目内容" prop="content" label-width="80px">
-        <el-input placeholder="请输入内容" :rows="5" type="textarea" v-model="add.content" />
+        <el-input
+          placeholder="请输入内容"
+          :rows="5"
+          type="textarea"
+          v-model="add.content"
+        />
       </el-form-item>
       <el-form-item label="参考答案" prop="answer" label-width="80px">
-        <el-input :rows="5" type="textarea" placeholder="请输入参考答案" v-model="add.answer" />
+        <el-input
+          :rows="5"
+          type="textarea"
+          placeholder="请输入参考答案"
+          v-model="add.answer"
+        />
       </el-form-item>
       <el-form-item label="添加标签" prop="tag" label-width="80px">
         <el-checkbox-group v-model="add.tag">
-          <el-checkbox v-for="tag in tagList" :label="tag.name" :key="tag.id"></el-checkbox>
+          <el-checkbox
+            v-for="tag in tagList"
+            :label="tag.name"
+            :key="tag.id"
+          ></el-checkbox>
         </el-checkbox-group>
       </el-form-item>
       <el-form-item label="选择难度" prop="degree" label-width="80px">
-        <el-slider v-model="add.degree" max=10 :disabled="false"></el-slider>
+        <el-slider v-model="add.degree" max="10" :disabled="false"></el-slider>
       </el-form-item>
       <el-form-item label="是否公开" prop="status" label-width="80px">
         <el-radio-group v-model="add.status">
-            <el-radio :label="0">公开</el-radio>
-            <el-radio :label="1">非公开</el-radio>
+          <el-radio :label="0">公开</el-radio>
+          <el-radio :label="1">非公开</el-radio>
         </el-radio-group>
       </el-form-item>
     </el-form>
@@ -64,28 +90,46 @@
   </el-dialog>
 
   <el-dialog v-model="updateDialogForm" title="修改题目">
-    <el-form style="width: 80%" :model="update" :rules="rules"> 
+    <el-form style="width: 80%" :model="update" :rules="rules">
       <el-form-item label="题目标题" prop="title" label-width="80px">
         <el-input placeholder="请输入标题" v-model="update.title" />
       </el-form-item>
       <el-form-item label="题目内容" prop="content" label-width="80px">
-        <el-input placeholder="请输入内容" :rows="5" type="textarea" v-model="update.content" />
+        <el-input
+          placeholder="请输入内容"
+          :rows="5"
+          type="textarea"
+          v-model="update.content"
+        />
       </el-form-item>
       <el-form-item label="参考答案" prop="answer" label-width="80px">
-        <el-input :rows="5" type="textarea" placeholder="请输入参考答案" v-model="update.answer" />
+        <el-input
+          :rows="5"
+          type="textarea"
+          placeholder="请输入参考答案"
+          v-model="update.answer"
+        />
       </el-form-item>
       <el-form-item label="修改标签" prop="tag" label-width="80px">
         <el-checkbox-group v-model="update.tag">
-          <el-checkbox v-for="tag in tagList" :label="tag.name" :key="tag.id"></el-checkbox>
+          <el-checkbox
+            v-for="tag in tagList"
+            :label="tag.name"
+            :key="tag.id"
+          ></el-checkbox>
         </el-checkbox-group>
       </el-form-item>
       <el-form-item label="修改难度" prop="degree" label-width="80px">
-        <el-slider v-model="update.degree" max=10 :disabled="false"></el-slider>
+        <el-slider
+          v-model="update.degree"
+          max="10"
+          :disabled="false"
+        ></el-slider>
       </el-form-item>
       <el-form-item label="是否公开" prop="status" label-width="80px">
         <el-radio-group v-model="update.status">
-            <el-radio :label="0">公开</el-radio>
-            <el-radio :label="1">非公开</el-radio>
+          <el-radio :label="0">公开</el-radio>
+          <el-radio :label="1">非公开</el-radio>
         </el-radio-group>
       </el-form-item>
     </el-form>
@@ -99,7 +143,10 @@
   </el-dialog>
 
   <el-dialog v-model="deleteDialogForm" title="删除题目">
-    <h2>即将删除题目<span style="color: red;">{{ del.title }}, 是否确认？</span></h2>
+    <h2>
+      即将删除题目
+      <span style="color: red">{{ del.title }}, 是否确认？</span>
+    </h2>
 
     <template #footer>
       <el-button size="default" @click="deleteCancel">取消</el-button>
@@ -121,7 +168,12 @@ import type {
   updateQuestionForm,
   updateQuestionResponse,
 } from '@/api/question/type'
-import { reqAddQuestion, reqDeleteQuestion, reqQuestionList, reqUpdateQuestion } from '@/api/question'
+import {
+  reqAddQuestion,
+  reqDeleteQuestion,
+  reqQuestionList,
+  reqUpdateQuestion,
+} from '@/api/question'
 import { onMounted, reactive, ref } from 'vue'
 import { ElMessage } from 'element-plus'
 import type { getAllTagResponseData, TagList } from '@/api/tag/type'
@@ -281,7 +333,9 @@ const rules = {
   title: [{ required: true, message: '请输入标题', trigger: 'blur' }],
   content: [{ required: true, message: '请输入内容', trigger: 'blur' }],
   answer: [{ required: true, message: '请输入参考答案', trigger: 'blur' }],
-  tag: [{ type: 'array', required: true, message: '请添加标签', trigger: 'change' }],
+  tag: [
+    { type: 'array', required: true, message: '请添加标签', trigger: 'change' },
+  ],
   degree: [{ required: true, message: '请选择难度', trigger: 'change' }],
   status: [{ required: true, message: '请选择状态', trigger: 'change' }],
 }
