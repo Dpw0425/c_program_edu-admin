@@ -3,6 +3,7 @@ import type {
   addTagForm,
   addTagResponse,
   deleteTagResponse,
+  getAllTagResponseData,
   tagListResponseData,
   updateTagForm,
   updateTagResponse,
@@ -15,6 +16,7 @@ enum API {
   ADD_URL = TAG_API + '/add',
   UPDATE_URL = TAG_API + '/update',
   DELETE_URL = TAG_API + '/delete',
+  GET_ALL_URL = TAG_API + '/get_all'
 }
 
 export const reqTagList = (
@@ -34,3 +36,6 @@ export const reqUpdateTag = (data: updateTagForm) =>
 
 export const reqDeleteTag = (id: number) =>
   request.delete<any, deleteTagResponse>(API.DELETE_URL + `?id=${id}`)
+
+export const reqGetAllTag = () =>
+  request.get<any, getAllTagResponseData>(API.GET_ALL_URL)

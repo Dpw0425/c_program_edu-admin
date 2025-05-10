@@ -49,7 +49,7 @@ request.interceptors.response.use(
     }
     ElMessage({
       type: 'error',
-      message,
+      message: error.response.data.message,
     })
 
     return Promise.reject(error)

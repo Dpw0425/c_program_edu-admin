@@ -13,6 +13,11 @@ export interface tagListResponseData extends ResponseData {
     total: number
   }
 }
+export interface getAllTagResponseData extends ResponseData {
+  data?: {
+    tag_list: TagList
+  }
+}
 
 // tag 添加
 export interface addTagForm {
