@@ -51,3 +51,43 @@ export interface updateQuestionResponse extends ResponseData {
 export interface deleteQuestionResponse extends ResponseData {
   data?: NormalData
 }
+
+// 查看测试数据
+export interface testDataItem {
+  question_id: number
+  id: number
+  input: string
+  output: string
+}
+export type testDataList = testDataItem[]
+export interface getTestDataResponse extends ResponseData {
+  data?: {
+    test_data_list: testDataList
+  }
+}
+
+// 新增测试数据
+export interface addTestDataRequest {
+  question_id: number
+  input: string
+  output: string
+}
+export interface addTestDataResponse extends ResponseData {
+  data?: NormalData
+}
+
+// 修改测试数据
+export interface updateTestDataRequest {
+  question_id: number
+  id: number
+  input: string
+  output: string
+}
+export interface updateTestDataResponse extends ResponseData {
+  data?: NormalData
+}
+
+// 删除测试数据
+export interface deleteTestDataResponse extends ResponseData {
+  data?: NormalData
+}

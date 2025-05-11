@@ -2,9 +2,15 @@ import request from '@/utils/request'
 import type {
   addQuestionForm,
   addQuestionResponse,
+  addTestDataRequest,
+  addTestDataResponse,
   deleteQuestionResponse,
+  deleteTestDataResponse,
+  getTestDataResponse,
   questionListResponseData,
   updateQuestionForm,
+  updateTestDataRequest,
+  updateTestDataResponse,
 } from './type'
 
 const QUESTION_API = '/question'
@@ -14,6 +20,10 @@ enum API {
   ADD_QUESTION_URL = QUESTION_API + '/add',
   UPDATE_QUESTION_URL = QUESTION_API + '/update',
   DELETE_QUESTION_URL = QUESTION_API + '/delete',
+  ADD_TEST_DATA_URL = QUESTION_API + '/add_test',
+  UPDATE_TEST_DATA_URL = QUESTION_API + '/update_test',
+  GET_TEST_DATA_URL = QUESTION_API + '/get_test',
+  DELETE_TEST_DATA_URL = QUESTION_API + '/delete_test',
 }
 
 export const reqQuestionList = (
@@ -35,3 +45,15 @@ export const reqDeleteQuestion = (id: number) =>
   request.delete<any, deleteQuestionResponse>(
     API.DELETE_QUESTION_URL + `?id=${id}`,
   )
+
+export const reqAddTestData = (data: addTestDataRequest) =>
+  request.post<any, addTestDataResponse>(API.ADD_TEST_DATA_URL, data)
+
+export const reqGetTestData = (id: number) =>
+  request.get<any, getTestDataResponse>(API.GET_TEST_DATA_URL + `?question_id=${id}`)
+
+export const reqUpdateTestData = (data: updateTestDataRequest) =>
+  request.post<any, updateTestDataResponse>(API.UPDATE_TEST_DATA_URL, data)
+
+export const reqDeleteTestData = (id: number) =>
+  request.delete<any, deleteTestDataResponse>(API.DELETE_TEST_DATA_URL + `?id=${id}`)
