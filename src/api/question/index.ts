@@ -50,10 +50,14 @@ export const reqAddTestData = (data: addTestDataRequest) =>
   request.post<any, addTestDataResponse>(API.ADD_TEST_DATA_URL, data)
 
 export const reqGetTestData = (id: number) =>
-  request.get<any, getTestDataResponse>(API.GET_TEST_DATA_URL + `?question_id=${id}`)
+  request.get<any, getTestDataResponse>(
+    API.GET_TEST_DATA_URL + `?question_id=${id}`,
+  )
 
 export const reqUpdateTestData = (data: updateTestDataRequest) =>
   request.post<any, updateTestDataResponse>(API.UPDATE_TEST_DATA_URL, data)
 
 export const reqDeleteTestData = (id: number) =>
-  request.delete<any, deleteTestDataResponse>(API.DELETE_TEST_DATA_URL + `?id=${id}`)
+  request.delete<any, deleteTestDataResponse>(
+    API.DELETE_TEST_DATA_URL + `?id=${id}`,
+  )

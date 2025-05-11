@@ -12,7 +12,12 @@
       <el-table-column prop="passing_rate" label="正确率" align="center" />
       <el-table-column label="题目管理" align="center">
         <template #="{ row, $index }">
-          <el-button type="info" size="small" icon="Message" @click="questionInfo(row)"></el-button>
+          <el-button
+            type="info"
+            size="small"
+            icon="Message"
+            @click="questionInfo(row)"
+          ></el-button>
           <el-button
             type="warning"
             size="small"
@@ -158,23 +163,58 @@
   </el-dialog>
 
   <el-dialog v-model="infoDialogForm" title="题目详情">
-    <el-descriptions style="width: 80%;" :column="1" border> 
-      <el-descriptions-item label="标题" label-width="80px">{{ info.title }}</el-descriptions-item>
-      <el-descriptions-item label="内容" label-width="80px">{{ info.content }}</el-descriptions-item>
-      <el-descriptions-item label="参考答案" label-width="80px"><div style="white-space: pre;">{{ info.answer }}</div></el-descriptions-item>
-      <el-descriptions-item label="难度" label-width="80px">{{ info.degree }}</el-descriptions-item>
-      <el-descriptions-item label="通过率" label-width="80px">{{ info.passing_rate }}</el-descriptions-item>
-      <el-descriptions-item label="状态" label-width="80px">{{ info.status }}</el-descriptions-item>
+    <el-descriptions style="width: 80%" :column="1" border>
+      <el-descriptions-item label="标题" label-width="80px">
+        {{ info.title }}
+      </el-descriptions-item>
+      <el-descriptions-item label="内容" label-width="80px">
+        {{ info.content }}
+      </el-descriptions-item>
+      <el-descriptions-item label="参考答案" label-width="80px">
+        <div style="white-space: pre">{{ info.answer }}</div>
+      </el-descriptions-item>
+      <el-descriptions-item label="难度" label-width="80px">
+        {{ info.degree }}
+      </el-descriptions-item>
+      <el-descriptions-item label="通过率" label-width="80px">
+        {{ info.passing_rate }}
+      </el-descriptions-item>
+      <el-descriptions-item label="状态" label-width="80px">
+        {{ info.status }}
+      </el-descriptions-item>
       <el-descriptions-item label="测试数据" label-width="80px">
-        <el-button type="primary" size="default" icon="Plus" @click="addTestData">添加测试数据</el-button>
+        <el-button
+          type="primary"
+          size="default"
+          icon="Plus"
+          @click="addTestData"
+        >
+          添加测试数据
+        </el-button>
         <el-table style="margin: 10px 0" :data="testData">
-          <el-table-column label="序号" width="80px" border align="center" type="index" />
+          <el-table-column
+            label="序号"
+            width="80px"
+            border
+            align="center"
+            type="index"
+          />
           <el-table-column prop="input" label="测试输入" align="center" />
           <el-table-column prop="output" label="期望输出" align="center" />
           <el-table-column label="测试数据管理" align="center">
             <template #="{ row, $index }">
-              <el-button type="info" size="small" icon="Edit" @click="updateTestData(row)"></el-button>
-              <el-button type="danger" size="small" icon="Delete" @click="deleteTestData(row)"></el-button>
+              <el-button
+                type="info"
+                size="small"
+                icon="Edit"
+                @click="updateTestData(row)"
+              ></el-button>
+              <el-button
+                type="danger"
+                size="small"
+                icon="Delete"
+                @click="deleteTestData(row)"
+              ></el-button>
             </template>
           </el-table-column>
         </el-table>
@@ -189,32 +229,56 @@
   <el-dialog v-model="addTestDataDialogForm" title="新增题目测试数据">
     <el-form style="width: 80%" :model="addTest">
       <el-form-item label="测试输入" prop="input" label-width="80px">
-        <el-input v-model="addTest.input" :rows="5" type="textarea" placeholder="请输入测试输入" />
+        <el-input
+          v-model="addTest.input"
+          :rows="5"
+          type="textarea"
+          placeholder="请输入测试输入"
+        />
       </el-form-item>
       <el-form-item label="期望输出" prop="output" label-width="80px">
-        <el-input v-model="addTest.output" :rows="5" type="textarea" placeholder="请输入期望输出" />
+        <el-input
+          v-model="addTest.output"
+          :rows="5"
+          type="textarea"
+          placeholder="请输入期望输出"
+        />
       </el-form-item>
     </el-form>
 
     <template #footer>
       <el-button size="default" @click="addTestDataCancel">取消</el-button>
-      <el-button type="primary" size="default" @click="addTestDataConfirm">确认</el-button>
+      <el-button type="primary" size="default" @click="addTestDataConfirm">
+        确认
+      </el-button>
     </template>
   </el-dialog>
 
   <el-dialog v-model="updateTestDataDialogForm" title="修改题目测试数据">
-    <el-form style="width: 80%" :model="updateTest"> 
+    <el-form style="width: 80%" :model="updateTest">
       <el-form-item label="测试输入" prop="input" label-width="80px">
-        <el-input v-model="updateTest.input" :rows="5" type="textarea" placeholder="请输入测试输入" />
+        <el-input
+          v-model="updateTest.input"
+          :rows="5"
+          type="textarea"
+          placeholder="请输入测试输入"
+        />
       </el-form-item>
       <el-form-item label="期望输出" prop="output" label-width="80px">
-        <el-input v-model="updateTest.output" :rows="5" type="textarea" placeholder="请输入期望输出" />
+        <el-input
+          v-model="updateTest.output"
+          :rows="5"
+          type="textarea"
+          placeholder="请输入期望输出"
+        />
       </el-form-item>
     </el-form>
 
     <template #footer>
       <el-button size="default" @click="updateTestDataCancel">取消</el-button>
-      <el-button type="primary" size="default" @click="updateTestDataConfirm">确认</el-button>
+      <el-button type="primary" size="default" @click="updateTestDataConfirm">
+        确认
+      </el-button>
     </template>
   </el-dialog>
 
@@ -223,7 +287,9 @@
 
     <template #footer>
       <el-button size="default" @click="deleteTestDataCancel">取消</el-button>
-      <el-button type="primary" size="default" @click="deleteTestDataConfirm">确认</el-button>
+      <el-button type="primary" size="default" @click="deleteTestDataConfirm">
+        确认
+      </el-button>
     </template>
   </el-dialog>
 </template>
@@ -437,7 +503,7 @@ const questionInfo = async (question: questionItem) => {
   info.tag = question.tag
   info.degree = question.degree
   info.passing_rate = question.passing_rate
-  info.status = question.status ? '公开': '非公开'
+  info.status = question.status ? '公开' : '非公开'
 
   let result: getTestDataResponse = await reqGetTestData(question.id)
   if (result.code == 200) {
@@ -489,10 +555,7 @@ let info_copy = reactive<questionItem>({
 // 新增题目测试数据
 const addTestData = () => {
   addTest.question_id = info.id
-  addTest.input = '',
-  addTest.output = '',
-
-  Object.assign(info_copy, info)
+  ;(addTest.input = ''), (addTest.output = ''), Object.assign(info_copy, info)
 
   addTestDataDialogForm.value = true
 }
