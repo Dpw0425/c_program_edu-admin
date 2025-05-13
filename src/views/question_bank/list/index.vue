@@ -1,43 +1,95 @@
 <template>
   <div>
     <el-card class="box-card">
-      <el-button type="primary" size="default" icon="Plus" @click="addQuestionBank">创建题库</el-button>
+      <el-button
+        type="primary"
+        size="default"
+        icon="Plus"
+        @click="addQuestionBank"
+      >
+        创建题库
+      </el-button>
 
-      <el-table style="margin: 10px 0;" :data="bankList">
-        <el-table-column label="序号" width="80px" align="center" type="index"></el-table-column>
-        <el-table-column prop="name" label="题库名称" align="center"></el-table-column>
-        <el-table-column prop="open_grade" label="开放年级" align="center"></el-table-column>
-        <el-table-column prop="count" label="题目数量" align="center"></el-table-column>
-        <el-table-column prop="participants" label="参与人数" align="center"></el-table-column>
-        <el-table-column prop="completed" label="完成人数" align="center"></el-table-column>
+      <el-table style="margin: 10px 0" :data="bankList">
+        <el-table-column
+          label="序号"
+          width="80px"
+          align="center"
+          type="index"
+        ></el-table-column>
+        <el-table-column
+          prop="name"
+          label="题库名称"
+          align="center"
+        ></el-table-column>
+        <el-table-column
+          prop="open_grade"
+          label="开放年级"
+          align="center"
+        ></el-table-column>
+        <el-table-column
+          prop="count"
+          label="题目数量"
+          align="center"
+        ></el-table-column>
+        <el-table-column
+          prop="participants"
+          label="参与人数"
+          align="center"
+        ></el-table-column>
+        <el-table-column
+          prop="completed"
+          label="完成人数"
+          align="center"
+        ></el-table-column>
         <el-table-column label="题库管理" align="center">
           <template #="{ row, $index }">
-            <el-button type="info" size="small" icon="Message" @click="bankInfo(row)"></el-button>
-            <el-button type="warning" size="small" icon="Edit" @click="updateBank(row)"></el-button>
-            <el-button type="danger" size="small" icon="Delete" @click="deleteBank(row)"></el-button>
+            <el-button
+              type="info"
+              size="small"
+              icon="Message"
+              @click="bankInfo(row)"
+            ></el-button>
+            <el-button
+              type="warning"
+              size="small"
+              icon="Edit"
+              @click="updateBank(row)"
+            ></el-button>
+            <el-button
+              type="danger"
+              size="small"
+              icon="Delete"
+              @click="deleteBank(row)"
+            ></el-button>
           </template>
         </el-table-column>
       </el-table>
 
       <div class="pagination_container">
-      <el-pagination
-        @current-change="getQuestionBankList"
-        v-mode:current-page="pageNo"
-        :page-size="limit"
-        background
-        layout="prev, pager, next, jumper, ->, total"
-        :total="total"
-      />
+        <el-pagination
+          @current-change="getQuestionBankList"
+          v-mode:current-page="pageNo"
+          :page-size="limit"
+          background
+          layout="prev, pager, next, jumper, ->, total"
+          :total="total"
+        />
       </div>
     </el-card>
 
     <el-dialog v-model="addDialogForm" title="创建空题库">
-      <el-form style="width: 80%;" :model="add" :rules="rules">
+      <el-form style="width: 80%" :model="add" :rules="rules">
         <el-form-item label="题库名称" prop="name" label-width="80px">
           <el-input v-model="add.name" placeholder="请输入题库名称" />
         </el-form-item>
         <el-form-item label="题库描述" prop="content" label-width="80px">
-          <el-input v-model="add.content" :rows="5" type="textarea" placeholder="请输入题库描述" />
+          <el-input
+            v-model="add.content"
+            :rows="5"
+            type="textarea"
+            placeholder="请输入题库描述"
+          />
         </el-form-item>
         <el-form-item label="题库描述" prop="content" label-width="80px">
           <el-checkbox-group v-model="add.open_grade">
@@ -48,41 +100,58 @@
           </el-checkbox-group>
         </el-form-item>
       </el-form>
-      
+
       <template #footer>
         <el-button size="default" @click="addCancel">取消</el-button>
-        <el-button type="primary" size="default" @click="addConfirm">确认</el-button>
+        <el-button type="primary" size="default" @click="addConfirm">
+          确认
+        </el-button>
       </template>
     </el-dialog>
 
     <el-dialog v-model="updateDialogForm" title="修改题库信息">
-      <el-form style="width: 80%;" :model="update" :rules="rules">
-        <el-form-item label="题库名称" prop="name" label-width="80px">{{ update.name }}</el-form-item>
+      <el-form style="width: 80%" :model="update" :rules="rules">
+        <el-form-item label="题库名称" prop="name" label-width="80px">
+          {{ update.name }}
+        </el-form-item>
         <el-form-item label="题库描述" prop="content" label-width="80px">
-          <el-input v-model="update.content" :rows="5" type="textarea" placeholder="请输入题库描述" />
+          <el-input
+            v-model="update.content"
+            :rows="5"
+            type="textarea"
+            placeholder="请输入题库描述"
+          />
         </el-form-item>
         <el-form-item label="开放年级" prop="content" label-width="80px">
           <el-checkbox-group v-model="update.open_grade">
-              <el-checkbox label="21" />
-              <el-checkbox label="22" />
-              <el-checkbox label="23" />
-              <el-checkbox label="24" />
+            <el-checkbox label="21" />
+            <el-checkbox label="22" />
+            <el-checkbox label="23" />
+            <el-checkbox label="24" />
           </el-checkbox-group>
         </el-form-item>
       </el-form>
-      
+
       <template #footer>
         <el-button size="default" @click="updateCancel">取消</el-button>
-        <el-button type="primary" size="default" @click="updateConfirm">确认</el-button>
+        <el-button type="primary" size="default" @click="updateConfirm">
+          确认
+        </el-button>
       </template>
     </el-dialog>
 
     <el-dialog v-model="deleteDialogForm" title="删除题库">
-      <h2>即将删除题库<span style="color: red;">{{ del.name }}</span>, 是否确认？</h2>
-      
+      <h2>
+        即将删除题库
+        <span style="color: red">{{ del.name }}</span>
+        , 是否确认？
+      </h2>
+
       <template #footer>
         <el-button size="default" @click="deleteCancel">取消</el-button>
-        <el-button type="primary" size="default" @click="deleteConfirm">确认</el-button>
+        <el-button type="primary" size="default" @click="deleteConfirm">
+          确认
+        </el-button>
       </template>
     </el-dialog>
 
@@ -107,14 +176,31 @@
           {{ info.count }}
         </el-descriptions-item>
         <el-descriptions-item label="题目列表" label-width="80px">
-          <el-button type="primary" size="default" icon="Plus" @click="addQuestionToBank">添加题目</el-button>
+          <el-button
+            type="primary"
+            size="default"
+            icon="Plus"
+            @click="addQuestionToBank"
+          >
+            添加题目
+          </el-button>
 
           <el-table style="margin: 10px 0" :data="bankQuestionList">
-            <el-table-column label="序号" width="80px" align="center" type="index" />
+            <el-table-column
+              label="序号"
+              width="80px"
+              align="center"
+              type="index"
+            />
             <el-table-column label="标题" prop="title" align="center" />
             <el-table-column label="题目管理" align="center">
               <template #="{ row, $index }">
-                <el-button type="danger" size="small" icon="Delete" @click="deleteQuestionFromBank(row)"></el-button>
+                <el-button
+                  type="danger"
+                  size="small"
+                  icon="Delete"
+                  @click="deleteQuestionFromBank(row)"
+                ></el-button>
               </template>
             </el-table-column>
           </el-table>
@@ -136,9 +222,19 @@
     </el-dialog>
 
     <el-dialog v-model="addQuestionDialogForm" title="添加题目">
-      <el-table style="margin: 10px 0;" :data="allQuestionList" border @selection-change="bindSelection">
+      <el-table
+        style="margin: 10px 0"
+        :data="allQuestionList"
+        border
+        @selection-change="bindSelection"
+      >
         <el-table-column type="selection" width="80px" align="center" />
-        <el-table-column label="序号" width="80px" align="center" type="index" />
+        <el-table-column
+          label="序号"
+          width="80px"
+          align="center"
+          type="index"
+        />
         <el-table-column label="标题" prop="title" align="center" />
       </el-table>
 
@@ -153,25 +249,56 @@
 
       <template #footer>
         <el-button size="default" @click="addQuestionCancel">取消</el-button>
-        <el-button type="primary" size="default" @click="addQuestionConfirm">确认</el-button>
+        <el-button type="primary" size="default" @click="addQuestionConfirm">
+          确认
+        </el-button>
       </template>
     </el-dialog>
 
     <el-dialog v-model="deleteQuestionDialogForm" title="删除题目">
-      <h2>即将从题库<span style="color: red;">{{ info.name }}</span>中移除题目<span style="color: red;">{{ delQueFromBank.title }}</span>, 是否确认？</h2>
-    
+      <h2>
+        即将从题库
+        <span style="color: red">{{ info.name }}</span>
+        中移除题目
+        <span style="color: red">{{ delQueFromBank.title }}</span>
+        , 是否确认？
+      </h2>
+
       <template #footer>
         <el-button size="default" @click="delQueFromBankCancel">取消</el-button>
-        <el-button type="primary" size=default @click="delQueFromBankConfirm">确认</el-button>
+        <el-button type="primary" size="default" @click="delQueFromBankConfirm">
+          确认
+        </el-button>
       </template>
     </el-dialog>
   </div>
 </template>
 
 <script setup lang="ts">
-import type { questionItem, QuestionList, questionListResponseData } from '@/api/question/type'
-import { reqAddBank, reqBankList, reqDeleteBank, reqExcludeQuestion, reqGetQuestion, reqGetQuestionBesideBank, reqUpdateBank } from '@/api/question_bank'
-import type { addBankForm, addBankResponseData, bankItem, BankList, bankListResponseData, deleteBankResponseData, updateBankForm, updateBankResponseData } from '@/api/question_bank/type'
+import type {
+  questionItem,
+  QuestionList,
+  questionListResponseData,
+} from '@/api/question/type'
+import {
+  reqAddBank,
+  reqBankList,
+  reqDeleteBank,
+  reqExcludeQuestion,
+  reqGetQuestion,
+  reqGetQuestionBesideBank,
+  reqUpdateBank,
+} from '@/api/question_bank'
+import type {
+  addBankForm,
+  addBankResponseData,
+  bankItem,
+  BankList,
+  bankListResponseData,
+  deleteBankResponseData,
+  updateBankForm,
+  updateBankResponseData,
+} from '@/api/question_bank/type'
 import { ElMessage } from 'element-plus'
 import { onMounted, reactive, ref } from 'vue'
 
@@ -224,7 +351,11 @@ let info = reactive<bankItem>({
 
 const getQuestionBankList = async (pager = 1) => {
   pageNo.value = pager
-  let result: bankListResponseData = await reqBankList(pageNo.value, limit.value, null)
+  let result: bankListResponseData = await reqBankList(
+    pageNo.value,
+    limit.value,
+    null,
+  )
   if (result.code == 200) {
     total.value = result.data?.total as number
     bankList.value = result.data?.bank_list.map((item) => {
@@ -273,7 +404,11 @@ const addConfirm = async () => {
 // 题库信息
 const getQuestionInBank = async (pager = 1) => {
   questionPageNo.value = pager
-  let result: questionListResponseData = await reqGetQuestion(questionPageNo.value, 5, info.id)
+  let result: questionListResponseData = await reqGetQuestion(
+    questionPageNo.value,
+    5,
+    info.id,
+  )
   if (result.code == 200) {
     bankQuestionList.value = result.data?.question_list as QuestionList
     bankQuestionTotal.value = result.data?.total as number
@@ -281,7 +416,11 @@ const getQuestionInBank = async (pager = 1) => {
 }
 const getQuestionBesideBank = async (pager = 1) => {
   allQuestionPageNo.value = pager
-  let result: questionListResponseData = await reqGetQuestionBesideBank(allQuestionPageNo.value, 5, info.id)
+  let result: questionListResponseData = await reqGetQuestionBesideBank(
+    allQuestionPageNo.value,
+    5,
+    info.id,
+  )
   if (result.code == 200) {
     allQuestionList.value = result.data?.question_list as QuestionList
     allQuestionTotal.value = result.data?.total as number
@@ -424,7 +563,10 @@ const delQueFromBankCancel = () => {
   deleteQuestionDialogForm.value = false
 }
 const delQueFromBankConfirm = async () => {
-  let result: deleteBankResponseData = await reqExcludeQuestion(info.id, delQueFromBank.question_id)
+  let result: deleteBankResponseData = await reqExcludeQuestion(
+    info.id,
+    delQueFromBank.question_id,
+  )
   if (result.code == 200) {
     deleteQuestionDialogForm.value = false
     ElMessage({
@@ -441,9 +583,7 @@ const delQueFromBankConfirm = async () => {
   }
 }
 
-const rules = {
-
-}
+const rules = {}
 
 onMounted(() => {
   getQuestionBankList()
