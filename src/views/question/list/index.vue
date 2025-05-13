@@ -163,7 +163,7 @@
   </el-dialog>
 
   <el-dialog v-model="infoDialogForm" title="题目详情">
-    <el-descriptions style="width: 80%" :column="1" border>
+    <el-descriptions :column="1" border>
       <el-descriptions-item label="标题" label-width="80px">
         {{ info.title }}
       </el-descriptions-item>
