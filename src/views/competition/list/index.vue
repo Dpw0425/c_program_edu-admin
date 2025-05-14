@@ -1,17 +1,29 @@
 <template>
   <div>
     <el-card class="box-card">
-      <el-button type="primary" size="default" icon="Plus" @click="addCompetition">创建比赛</el-button>
+      <el-button
+        type="primary"
+        size="default"
+        icon="Plus"
+        @click="addCompetition"
+      >
+        创建比赛
+      </el-button>
 
-      <el-table style="margin: 10px 0;" :data="competitionList">
-        <el-table-column label="序号" width="80px" align="center" type="index" />
+      <el-table style="margin: 10px 0" :data="competitionList">
+        <el-table-column
+          label="序号"
+          width="80px"
+          align="center"
+          type="index"
+        />
         <el-table-column prop="name" label="比赛名称" align="center" />
         <el-table-column prop="start_time" label="开始时间" align="center" />
         <el-table-column prop="deadline" label="截止时间" align="center" />
         <el-table-column prop="status" label="比赛状态" align="center">
           <template #="{ row, $index }">
             <span>
-              {{ 
+              {{
                 (() => {
                   const now = new Date()
                   const startTime = new Date(row.start_time)
@@ -32,26 +44,37 @@
         <el-table-column prop="category" label="比赛类别" align="center">
           <template #="{ row, $index }">
             <span>
-              {{
-                row.category === 0 ? '个人赛' : '团体赛'
-              }}
+              {{ row.category === 0 ? '个人赛' : '团体赛' }}
             </span>
           </template>
         </el-table-column>
         <el-table-column prop="permission" label="比赛权限" align="center">
           <template #="{ row, $index }">
             <span>
-              {{
-                row.permission === 0 ? '公开' : '需审批'
-              }}
+              {{ row.permission === 0 ? '公开' : '需审批' }}
             </span>
           </template>
         </el-table-column>
         <el-table-column label="比赛管理" align="center">
           <template #="{ row, $index }">
-            <el-button type="info" size="small" icon="Message" @click=""></el-button>
-            <el-button type="warning" size="small" icon="Edit" @click="updateCompetition(row)"></el-button>
-            <el-button type="danger" size="small" icon="Delete" @click="deleteCompetition(row)"></el-button>
+            <el-button
+              type="info"
+              size="small"
+              icon="Message"
+              @click=""
+            ></el-button>
+            <el-button
+              type="warning"
+              size="small"
+              icon="Edit"
+              @click="updateCompetition(row)"
+            ></el-button>
+            <el-button
+              type="danger"
+              size="small"
+              icon="Delete"
+              @click="deleteCompetition(row)"
+            ></el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -69,15 +92,25 @@
     </el-card>
 
     <el-dialog v-model="addDialogForm" title="创建比赛">
-      <el-form style="width: 80%" :model="add" :rules="rules"> 
+      <el-form style="width: 80%" :model="add" :rules="rules">
         <el-form-item label="比赛名称" prop="name" label-width="80px">
           <el-input placeholder="请输入名称" v-model="add.name" />
         </el-form-item>
         <el-form-item label="开始时间" prop="start_time" label-width="80px">
-          <el-date-picker v-model="add.start_time" type="datetime" placeholder="选择日期时间" align="right" />
+          <el-date-picker
+            v-model="add.start_time"
+            type="datetime"
+            placeholder="选择日期时间"
+            align="right"
+          />
         </el-form-item>
         <el-form-item label="截止时间" prop="deadline" label-width="80px">
-          <el-date-picker v-model="add.deadline" type="datetime" placeholder="选择日期时间" align="right" />
+          <el-date-picker
+            v-model="add.deadline"
+            type="datetime"
+            placeholder="选择日期时间"
+            align="right"
+          />
         </el-form-item>
         <el-form-item label="比赛类别" prop="category" label-width="80px">
           <el-radio-group v-model="add.category">
@@ -95,20 +128,32 @@
 
       <template #footer>
         <el-button size="default" @click="addCancel">取消</el-button>
-        <el-button type="primary" size=default @click="addConfirm">确认</el-button>
+        <el-button type="primary" size="default" @click="addConfirm">
+          确认
+        </el-button>
       </template>
     </el-dialog>
 
     <el-dialog v-model="updateDialogForm" title="修改比赛信息">
-      <el-form style="width: 80%" :model="update" :rules="rules"> 
+      <el-form style="width: 80%" :model="update" :rules="rules">
         <el-form-item label="比赛名称" prop="name" label-width="80px">
           {{ update.name }}
         </el-form-item>
         <el-form-item label="开始时间" prop="start_time" label-width="80px">
-          <el-date-picker v-model="update.start_time" type="datetime" placeholder="选择日期时间" align="right" />
+          <el-date-picker
+            v-model="update.start_time"
+            type="datetime"
+            placeholder="选择日期时间"
+            align="right"
+          />
         </el-form-item>
         <el-form-item label="截止时间" prop="deadline" label-width="80px">
-          <el-date-picker v-model="update.deadline" type="datetime" placeholder="选择日期时间" align="right" />
+          <el-date-picker
+            v-model="update.deadline"
+            type="datetime"
+            placeholder="选择日期时间"
+            align="right"
+          />
         </el-form-item>
         <el-form-item label="比赛类别" prop="category" label-width="80px">
           <el-radio-group v-model="update.category">
@@ -126,26 +171,48 @@
 
       <template #footer>
         <el-button size="default" @click="updateCancel">取消</el-button>
-        <el-button type="primary" size=default @click="updateConfirm">确认</el-button>
+        <el-button type="primary" size="default" @click="updateConfirm">
+          确认
+        </el-button>
       </template>
     </el-dialog>
 
     <el-dialog v-model="deleteDialogForm" title="删除比赛信息">
-      <h2>即将删除比赛<span style="color: red;">{{ del.name }}</span>, 是否确认？</h2>
+      <h2>
+        即将删除比赛
+        <span style="color: red">{{ del.name }}</span>
+        , 是否确认？
+      </h2>
 
       <template #footer>
         <el-button size="default" @click="deleteCancel">取消</el-button>
-        <el-button type="primary" size=default @click="deleteConfirm">确认</el-button>
+        <el-button type="primary" size="default" @click="deleteConfirm">
+          确认
+        </el-button>
       </template>
     </el-dialog>
   </div>
 </template>
 
 <script setup lang="ts">
-import { reqAddCompetition, reqCompetitionList, reqDeleteCompetition, reqUpdateCompetition } from '@/api/competition';
-import type { addCompetitionForm, addCompetitionResponseData, competitionItem, CompetitionList, competitionListResponseData, deleteCompetitionResponseData, updateCompetitionForm, updateCompetitionResponseData } from '@/api/competition/type';
-import { ElMessage } from 'element-plus';
-import { onMounted, reactive, ref } from 'vue';
+import {
+  reqAddCompetition,
+  reqCompetitionList,
+  reqDeleteCompetition,
+  reqUpdateCompetition,
+} from '@/api/competition'
+import type {
+  addCompetitionForm,
+  addCompetitionResponseData,
+  competitionItem,
+  CompetitionList,
+  competitionListResponseData,
+  deleteCompetitionResponseData,
+  updateCompetitionForm,
+  updateCompetitionResponseData,
+} from '@/api/competition/type'
+import { ElMessage } from 'element-plus'
+import { onMounted, reactive, ref } from 'vue'
 
 // 当前页码
 let pageNo = ref<number>(1)
@@ -189,7 +256,11 @@ let del = reactive({
 // 比赛列表
 const getCompetitionList = async (pager = 1) => {
   pageNo.value = pager
-  let result: competitionListResponseData = await reqCompetitionList(pageNo.value, limit.value, null)
+  let result: competitionListResponseData = await reqCompetitionList(
+    pageNo.value,
+    limit.value,
+    null,
+  )
   if (result.code == 200) {
     total.value = result.data?.total as number
     competitionList.value = result.data?.competition_list.map((item) => {
@@ -205,12 +276,12 @@ const getCompetitionList = async (pager = 1) => {
 
 // 创建比赛
 const addCompetition = () => {
-  add.name = '',
-  add.start_time = '',
-  add.deadline = '',
-  add.category = 0,
-  add.permission = 0,
-  addDialogForm.value = true
+  ;(add.name = ''),
+    (add.start_time = ''),
+    (add.deadline = ''),
+    (add.category = 0),
+    (add.permission = 0),
+    (addDialogForm.value = true)
 }
 const addCancel = () => {
   addDialogForm.value = false
@@ -293,9 +364,7 @@ const deleteConfirm = async () => {
   }
 }
 
-const rules = {
-
-}
+const rules = {}
 
 onMounted(() => {
   getCompetitionList()
