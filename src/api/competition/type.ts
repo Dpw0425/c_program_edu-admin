@@ -49,3 +49,12 @@ export interface updateCompetitionResponseData extends ResponseData {
 export interface deleteCompetitionResponseData extends ResponseData {
   data?: NormalData
 }
+
+// 添加题目
+export interface addQuestionToCptForm {
+  competition_id: number
+  ids: number[] | null
+}
+export interface addQuestionToCptResponseData extends ResponseData {
+  data?: NormalData
+}
