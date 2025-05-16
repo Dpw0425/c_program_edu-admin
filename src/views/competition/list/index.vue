@@ -227,14 +227,31 @@
           {{ info.permission === 0 ? '公开' : '需审批' }}
         </el-descriptions-item>
         <el-descriptions-item label="题目列表" label-width="80px">
-          <el-button type="primary" size="default" icon="Plus" @click="addQuestionToCpt">添加题目</el-button>
+          <el-button
+            type="primary"
+            size="default"
+            icon="Plus"
+            @click="addQuestionToCpt"
+          >
+            添加题目
+          </el-button>
 
-          <el-table style="margin: 10px 0;" :data="cptQuestionList">
-            <el-table-column label="序号" width="80px" align="center" type="index" />
+          <el-table style="margin: 10px 0" :data="cptQuestionList">
+            <el-table-column
+              label="序号"
+              width="80px"
+              align="center"
+              type="index"
+            />
             <el-table-column label="标题" prop="title" align="center" />
             <el-table-column label="题目管理" align="center">
               <template #="{ row, $index }">
-                <el-button type="danger" size="small" icon="Delete" @click="deleteQuestionFromCpt(row)"></el-button>
+                <el-button
+                  type="danger"
+                  size="small"
+                  icon="Delete"
+                  @click="deleteQuestionFromCpt(row)"
+                ></el-button>
               </template>
             </el-table-column>
           </el-table>
@@ -256,18 +273,28 @@
     </el-dialog>
 
     <el-dialog v-model="addQuestionDialogForm" title="添加题目">
-      <el-table style="margin: 10px 0" :data="allQuestionList" border @selection-change="bindSelection">
+      <el-table
+        style="margin: 10px 0"
+        :data="allQuestionList"
+        border
+        @selection-change="bindSelection"
+      >
         <el-table-column type="selection" width="80px" align="center" />
-        <el-table-column label="序号" width="80px" align="center" type="index" />
+        <el-table-column
+          label="序号"
+          width="80px"
+          align="center"
+          type="index"
+        />
         <el-table-column label="标题" prop="title" align="center">
           <template #header>
-            <div style="display: flex; align-items: center;">
-              <span style="margin-right: 10px;">标题</span>
+            <div style="display: flex; align-items: center">
+              <span style="margin-right: 10px">标题</span>
               <el-input
                 v-model="search"
                 size="mini"
                 placeholder="输入关键字搜索"
-                style="width: 200px;"
+                style="width: 200px"
               />
             </div>
           </template>
@@ -333,7 +360,11 @@ import type {
   updateCompetitionForm,
   updateCompetitionResponseData,
 } from '@/api/competition/type'
-import type { questionItem, QuestionList, questionListResponseData } from '@/api/question/type'
+import type {
+  questionItem,
+  QuestionList,
+  questionListResponseData,
+} from '@/api/question/type'
 import { ElMessage } from 'element-plus'
 import { onMounted, reactive, ref } from 'vue'
 
@@ -348,7 +379,10 @@ const delQueFromCptCancel = () => {
   deleteQuestionDialogForm.value = false
 }
 const delQueFromCptConfirm = async () => {
-  let result: deleteCompetitionResponseData = await reqExcludeQuestionFromCpt(info.id, delQueFromCpt.question_id)
+  let result: deleteCompetitionResponseData = await reqExcludeQuestionFromCpt(
+    info.id,
+    delQueFromCpt.question_id,
+  )
   if (result.code == 200) {
     deleteQuestionDialogForm.value = false
     ElMessage({
@@ -565,13 +599,17 @@ const addQuestionToCpt = () => {
 const deleteQuestionFromCpt = (question: questionItem) => {
   delQueFromCpt.question_id = question.id
   delQueFromCpt.title = question.title
-  
+
   deleteQuestionDialogForm.value = true
 }
 // 获取比赛中的题目
 const getQuestionInCpt = async (pager = 1) => {
   questionPageNo.value = pager
-  let result: questionListResponseData = await reqGetQuestionInCpt(questionPageNo.value, 5, info.id)
+  let result: questionListResponseData = await reqGetQuestionInCpt(
+    questionPageNo.value,
+    5,
+    info.id,
+  )
   if (result.code == 200) {
     cptQuestionList.value = result.data?.question_list as QuestionList
     cptQuestionTotal.value = result.data?.total as number
@@ -581,7 +619,12 @@ let search = ref<string | null>(null)
 // 获取不在比赛中的题目
 const getQuestionBesideCpt = async (pager = 1) => {
   allQuestionPageNo.value = pager
-  let result: questionListResponseData = await reqGetQuestionBesideCpt(allQuestionPageNo.value, 5, info.id, search.value)
+  let result: questionListResponseData = await reqGetQuestionBesideCpt(
+    allQuestionPageNo.value,
+    5,
+    info.id,
+    search.value,
+  )
   if (result.code == 200) {
     allQuestionList.value = result.data?.question_list as QuestionList
     allQuestionTotal.value = result.data?.total as number
@@ -589,14 +632,14 @@ const getQuestionBesideCpt = async (pager = 1) => {
 }
 
 const bindSelection = (value: any) => {
-  ids.ids = value.map((row: { id: any}) => row.id)
+  ids.ids = value.map((row: { id: any }) => row.id)
 }
 const addQuestionCancel = () => {
   addQuestionDialogForm.value = false
 }
 let ids = reactive<addQuestionToCptForm>({
   competition_id: 0,
-  ids: null
+  ids: null,
 })
 const addQuestionConfirm = async () => {
   let result: addQuestionToCptResponseData = await reqAddQuestionToCpt(ids)

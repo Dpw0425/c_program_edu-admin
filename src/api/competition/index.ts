@@ -47,13 +47,29 @@ export const reqDeleteCompetition = (id: number) =>
   )
 
 export const reqGetQuestionInCpt = (page: number, number: number, id: number) =>
-  request.get<any, questionListResponseData>(API.GET_QUESTION_URL + `?page=${page}&number=${number}&id=${id}`)
+  request.get<any, questionListResponseData>(
+    API.GET_QUESTION_URL + `?page=${page}&number=${number}&id=${id}`,
+  )
 
-export const reqGetQuestionBesideCpt = (page: number, number: number, id: number, search: string | null) =>
-  request.get<any, questionListResponseData>(API.GET_BESIDE_URL + `?page=${page}&number=${number}&id=${id}&search${search}`)
+export const reqGetQuestionBesideCpt = (
+  page: number,
+  number: number,
+  id: number,
+  search: string | null,
+) =>
+  request.get<any, questionListResponseData>(
+    API.GET_BESIDE_URL +
+      `?page=${page}&number=${number}&id=${id}&search${search}`,
+  )
 
 export const reqAddQuestionToCpt = (data: addQuestionToCptForm) =>
   request.post<any, addQuestionToCptResponseData>(API.ADD_QUESTION_URL, data)
 
-export const reqExcludeQuestionFromCpt = (competition_id: number, question_id: number) =>
-  request.delete<any, deleteCompetitionResponseData>(API.EXCLUDE_QUESTION_URL + `?competition_id=${competition_id}&question_id=${question_id}`)
+export const reqExcludeQuestionFromCpt = (
+  competition_id: number,
+  question_id: number,
+) =>
+  request.delete<any, deleteCompetitionResponseData>(
+    API.EXCLUDE_QUESTION_URL +
+      `?competition_id=${competition_id}&question_id=${question_id}`,
+  )
